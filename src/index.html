@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Hello World!</title>
+	<style>
+		html, body {
+			margin: 0;
+			padding: 0;
+			border: none;
+			color: white;
+			font-family: Arial, Helvetica, sans-serif;
+			font-size: 1rem;
+			text-shadow: 2px 2px black;
+		}
+		.wrapper {
+			position: absolute;
+			top: 0;
+			bottom: 0;
+			width: 100%;
+			display: flex;
+			align-items: stretch;
+			flex-direction: column;
+			justify-content: stretch;
+			border: 2px solid "rgba(255,255,255,0.5)";
+			box-sizing: border-box;
+			background: rgba(0,0,0,0.5);
+		}
+		.dragger {
+			box-sizing: border-box;
+			-webkit-app-region:drag;
+			background-image: radial-gradient(rgba(255, 255, 255, 0.5) 30%, transparent 30%);
+			background-position: 0 0 ;
+			background-size: 6px 6px;
+			height: 20px;
+			margin: 5px;
+		}
+		.editor {
+			flex: 1;
+			box-sizing: border-box;
+			width: 100%;
+			padding: 10px;
+			border: none;
+			resize: none;
+			outline: none;
+			background: none;
+			color: inherit;
+			font-family: inherit;
+			font-size: inherit;
+		}
+		*::-webkit-scrollbar {
+			width: 0 !important;
+			height: 0 !important;
+		}
+		.controls {
+			display: flex;
+			align-items: center;
+			justify-content: space-around;
+		}
+		.open, .save {
+			cursor: pointer;
+		}
+		.open:hover, .save:hover {
+			color: rgb(0, 110, 255)
+		}
+		.open:active, .save:active {
+			color: rgb(0, 43, 99)
+		}
+	</style>
+</head>
+<body>
+	<div class="wrapper">
+		<div class="dragger"></div>
+		<div class="controls">
+			<div tabindex="0" class="open">Open</div>
+			<div tabindex="0" class="save">Save</div>
+			<div tabindex="0" class="save-as">Save As</div>
+		</div>
+		<textarea class="editor"></textarea>
+	</div>
+
+	<script>
+		// You can also require other files to run in this process
+		require('./renderer.js')
+	</script>
+</body>
+</html>
