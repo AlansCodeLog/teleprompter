@@ -1,55 +1,64 @@
 {
-  "name": "teleprompter",
-  "productName": "teleprompter",
-  "description": "Quick transparent teleprompter app.",
-  "version": "0.0.1",
-  "main": "src/main.js",
-  "license": "MIT",
-  "scripts": {
-    "start": "electron-forge start",
-    "package": "electron-forge package",
-    "make": "electron-forge make",
-    "publish": "electron-forge publish",
-    "lint": "echo \"No linting configured\""
-  },
-  "keywords": [],
-  "author": "Alan",
-  "config": {
-    "forge": {
-      "packagerConfig": {},
-      "makers": [
-        {
-          "name": "@electron-forge/maker-squirrel",
-          "config": {
-            "name": "teleprompter"
-          }
-        },
-        {
-          "name": "@electron-forge/maker-zip",
-          "platforms": [
-            "darwin"
-          ]
-        },
-        {
-          "name": "@electron-forge/maker-deb",
-          "config": {}
-        },
-        {
-          "name": "@electron-forge/maker-rpm",
-          "config": {}
-        }
-      ]
-    }
-  },
-  "dependencies": {
-    "electron-squirrel-startup": "^1.0.0"
-  },
-  "devDependencies": {
-    "@electron-forge/cli": "6.0.0-beta.39",
-    "@electron-forge/maker-deb": "6.0.0-beta.39",
-    "@electron-forge/maker-rpm": "6.0.0-beta.39",
-    "@electron-forge/maker-squirrel": "6.0.0-beta.39",
-    "@electron-forge/maker-zip": "6.0.0-beta.39",
-    "electron": "5.0.2"
-  }
+	"name": "teleprompter",
+	"productName": "teleprompter",
+	"description": "Quick transparent teleprompter app.",
+	"version": "0.0.1",
+	"main": "src/main.js",
+	"license": "MIT",
+	"scripts": {
+		"build": "babel src-ts --out-dir src --extensions .ts,.js --source-maps inline",
+		"watch": "npm run build -- --watch",
+		"types": "tsc",
+		"dev": "electron-forge start",
+		"package": "electron-forge package",
+		"make": "npm run build && electron-forge make",
+		"publish": "electron-forge publish"
+	},
+	"keywords": [],
+	"author": "Alan",
+	"config": {
+		"forge": {
+			"packagerConfig": {},
+			"makers": [
+				{
+					"name": "@electron-forge/maker-squirrel",
+					"config": {
+						"name": "teleprompter"
+					}
+				},
+				{
+					"name": "@electron-forge/maker-zip",
+					"platforms": [
+						"darwin"
+					]
+				},
+				{
+					"name": "@electron-forge/maker-deb",
+					"config": {}
+				},
+				{
+					"name": "@electron-forge/maker-rpm",
+					"config": {}
+				}
+			]
+		}
+	},
+	"dependencies": {
+	},
+	"devDependencies": {
+		"@babel/core": "^7.4.5",
+		"@babel/plugin-proposal-class-properties": "^7.4.4",
+		"@babel/plugin-proposal-object-rest-spread": "^7.4.4",
+		"@babel/preset-env": "^7.4.5",
+		"@babel/preset-typescript": "^7.3.3",
+		"electron-reload": "^1.4.0",
+		"electron-squirrel-startup": "^1.0.0",
+		"tsc": "^1.20150623.0",
+		"@electron-forge/cli": "6.0.0-beta.39",
+		"@electron-forge/maker-deb": "6.0.0-beta.39",
+		"@electron-forge/maker-rpm": "6.0.0-beta.39",
+		"@electron-forge/maker-squirrel": "6.0.0-beta.39",
+		"@electron-forge/maker-zip": "6.0.0-beta.39",
+		"electron": "5.0.2"
+	}
 }

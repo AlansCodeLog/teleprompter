@@ -11,7 +11,10 @@
 			color: white;
 			font-family: Arial, Helvetica, sans-serif;
 			font-size: 1rem;
-			text-shadow: 2px 2px black;
+			text-shadow: 1px 1px 3px black;
+			line-height: 1.2rem;
+			word-break: keep-all;
+			white-space: nowrap
 		}
 		.wrapper {
 			position: absolute;
@@ -25,21 +28,47 @@
 			border: 2px solid "rgba(255,255,255,0.5)";
 			box-sizing: border-box;
 			background: rgba(0,0,0,0.5);
+			border-radius: 5px;
+			opacity: 0.5;
+		}
+		.dragbar {
+			padding: 0 5px;
+		}
+		.menu {
+			width: 20px;
+			padding:0;
+			margin:5px;
+			color: rgba(255, 255, 255, 0.5);
+			border: none;
+			height: 20px;
+			margin-top: 11px;
+			border: 2px solid rgba(255, 255, 255, 0.3);
+			border-radius: 100%;
+			box-sizing: border-box;
+		}
+		.menu:hover {
+			border-color: rgb(0, 110, 255);
+		}
+		.menu:active {
+			border-color: rgb(82, 157, 255);
 		}
 		.dragger {
+			flex: 1;
 			box-sizing: border-box;
 			-webkit-app-region:drag;
-			background-image: radial-gradient(rgba(255, 255, 255, 0.5) 30%, transparent 30%);
-			background-position: 0 0 ;
+			background-image: radial-gradient(rgba(255, 255, 255, 0.3) 20%, transparent 30%);
+			background-position: 0 0;
 			background-size: 6px 6px;
-			height: 20px;
-			margin: 5px;
+			height: 19px;
+			margin: 9px 4px 2px;
+			outline: 0;
 		}
 		.editor {
 			flex: 1;
 			box-sizing: border-box;
-			width: 100%;
+			width: calc(100% - 20px);
 			padding: 10px;
+			margin: 5px 10px 10px;
 			border: none;
 			resize: none;
 			outline: none;
@@ -47,34 +76,161 @@
 			color: inherit;
 			font-family: inherit;
 			font-size: inherit;
+			border-radius: 5px;
+			border: 1px solid rgba(255,255,255,0.1);
 		}
 		*::-webkit-scrollbar {
 			width: 0 !important;
 			height: 0 !important;
 		}
-		.controls {
+		.topbar {
 			display: flex;
 			align-items: center;
-			justify-content: space-around;
+			justify-content: space-between;
+			padding: 0 5px;
+			flex-wrap: wrap;
+			user-select: none;
+			/* display: none; */
 		}
-		.open, .save {
+		.topbar.wrapped {
+			justify-content: center;
+		}
+		.flexgroup {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			flex-wrap: nowrap;
+		}
+		.info-item {
+			padding: 5px;
+		}
+		.item, .label, .button {
+			padding: 5px 10px;
+			border: 1px solid rgba(255,255,255,0.05);
+		}
+		.item {
+			background: rgba(255,255,255,0.1);
+			border-radius: 0 5px 5px 0;
+		}
+		.label {
+			background: rgba(255,255,255,0.05);
+			border-radius: 5px 0 0 5px !important;
+			border-right: none !important;
+		}
+		.button {
 			cursor: pointer;
+			border-radius: 5px;
+			margin: 5px;
+			outline: none;
+			border-color: rgba(255, 255, 255, 0.1);
+			background: linear-gradient(180deg, rgba(255,255,255,0.05) 0%, rgba(0,0,0,0) 100%);
+			filter: grayscale(100%);
 		}
-		.open:hover, .save:hover {
-			color: rgb(0, 110, 255)
+		.button:hover {
+			color: rgb(82, 157, 255);
+			border-color: rgb(0, 110, 255);
 		}
-		.open:active, .save:active {
-			color: rgb(0, 43, 99)
+		.button:active {
+			color: rgb(126, 182, 255);
+			border-color:rgb(82, 157, 255);
+		}
+		*:focus {
+			border: 1px solid rgb(0, 110, 255, 0.5);
+		}
+		input {
+			display: flex;
+			flex: 1 1 auto;
+			min-width: 0;
+			width:2rem;
+			background: rgba(0, 132, 255, 0.1) !important;
+			color: inherit;
+			font: inherit;
+			text-shadow: inherit;
+			outline: none;
+			border: 1px solid rgba(0, 132, 255, 0.5) !important;
+			line-height: inherit;
+			height: 1.2rem;
+			text-align: center;
+		}
+		input:focus {
+			border: 1px solid rgba(0, 132, 255, 1) !important;
+			background: rgba(0, 132, 255, 0.3) !important;
+		}
+		span, .label { display: block; }
+		.time {
+			width: 1.5rem;
+			text-align:center;
+			margin: 0;
+			border-right: 1px solid rgba(255, 255, 255, 0.1) !important;
+		}
+		.time:hover {
+			border-right: 1px solid  rgb(0, 110, 255) !important;
+		}
+		.time-val {
+			border-left: none !important;
+		}
+		.opacity {
+			width: 2rem;
+			text-align: center;
+			padding-right: 0;
+			padding-left: 0;
+			margin: 0;
+			border-radius: 0;
+		}
+		.opacity-label {
+			margin: 5px;
+			margin-right: 0;
+		}
+		.opacity-less {
+			border-right-color: none;
+		}
+		.opacity-more {
+			border-radius: 0 5px 5px 0;
+			margin-right: 5px;
 		}
 	</style>
 </head>
 <body>
 	<div class="wrapper">
-		<div class="dragger"></div>
-		<div class="controls">
-			<div tabindex="0" class="open">Open</div>
-			<div tabindex="0" class="save">Save</div>
-			<div tabindex="0" class="save-as">Save As</div>
+		<div class="dragbar flexgroup"><div class="dragger"></div><div class="menu"></div></div>
+		<div class="topbar">
+			<div class="flexgroup">
+				<div tabindex="0" class="open button target">📂</div>
+				<div tabindex="0" class="save button">💾</div>
+				<div tabindex="0" class="save-as button">💾 As</div>
+			</div>
+			<!-- <div class="flexgroup">
+				<div class="info-item flexgroup">
+					<span class="label">Count (Paragraph)</span>
+					<span class="counter-part item">0</span>
+				</div>
+			</div> -->
+			<div class="flexgroup">
+				<div class="info-item flexgroup">
+					<span class="label">Count</span>
+					<span class="counter-all item">0</span>
+				</div>
+				<div title ="Words per Minute " class="info-item flexgroup">
+					<span class="label">WPM</span>
+					<input value="170" class="wpm item">
+				</div>
+			</div>
+			<div class="flexgroup">
+				<div class="info-item flexgroup">
+					<span class="label" title="Estimated read time based on wpm.">Estimated Duration</span>
+					<span class="counter-time item minutes">00:00:00</span>
+				</div>
+				<div class="info-item flexgroup">
+					<div class="label time button" title="Click to Start/Stop Stopwatch">⏱️</div>
+					<div class="time-val item">00:00:00</div>
+				</div>
+			</div>
+			<div class="flexgroup">
+				<div class="label opacity-label">Opacity</div>
+				<div tabindex="0" class="opacity opacity-less button" title="Decrease Overall Opacity (Ctrl+Alt+Minus)">➖</div>
+				<div tabindex="0" class="opacity opacity-more button" title="Increase Overall (Ctrl+Alt+Plus)">➕</div>
+				<div tabindex="0" class="transparent-background button" title="Toggle 0.5 Background Opacity (Ctrl+Tab)">Background</div>
+			</div>
 		</div>
 		<textarea class="editor"></textarea>
 	</div>
