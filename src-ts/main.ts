@@ -1,12 +1,11 @@
 import { app, BrowserWindow } from "electron"
 import path from "path"
 
-// quick hot reloading
-console.log(path.resolve(process.cwd(), "src"), path.resolve(process.cwd(), "src/**"));
 
-require('electron-reload')(path.resolve(process.cwd(), "src"), {
-	electron: path.resolve(process.cwd(), "node_modules", "electron", "dist", "electron.exe")
-});
+// quick hot reloading
+// require('electron-reload')(path.resolve(process.cwd(), "src"), {
+// 	electron: path.resolve(process.cwd(), "node_modules", "electron", "dist", "electron.exe")
+// });
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (require('electron-squirrel-startup')) { // eslint-disable-line global-require

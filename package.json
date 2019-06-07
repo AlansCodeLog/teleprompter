@@ -44,6 +44,7 @@
 		}
 	},
 	"dependencies": {
+		"electron-squirrel-startup": "^1.0.0"
 	},
 	"devDependencies": {
 		"@babel/core": "^7.4.5",
@@ -52,7 +53,6 @@
 		"@babel/preset-env": "^7.4.5",
 		"@babel/preset-typescript": "^7.3.3",
 		"electron-reload": "^1.4.0",
-		"electron-squirrel-startup": "^1.0.0",
 		"tsc": "^1.20150623.0",
 		"@electron-forge/cli": "6.0.0-beta.39",
 		"@electron-forge/maker-deb": "6.0.0-beta.39",
