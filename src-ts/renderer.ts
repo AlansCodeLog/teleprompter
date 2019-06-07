@@ -7,7 +7,8 @@ import path from "path"
 
 function calculate_counters(editor: HTMLTextAreaElement, counter_all: HTMLDivElement, wpm: HTMLInputElement, minutes: HTMLDivElement) {
 	return function handler(e: Event) {
-		let word_count = editor.value.split(/\s+/gm).length
+		let text = editor.value.replace(/(\[[\s\S]+\])/gm, "")
+		let word_count = text.split(/\s+/gm).length
 		counter_all.textContent = `${word_count}`
 		let wpm_val = parseInt(wpm.value, 10)
 		let read_time
